@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опросник дизайна бренда</title>
+<style>
+  /* WeasyPrint: Google Fonts не грузятся, используем system/embedded fallbacks */
+
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #f5f0e8;
+    --sand: #e8e0d0;
+    --taupe: #c4b8a4;
+    --brown: #8c7b68;
+    --dark: #2a2420;
+    --accent: #9b7e5a;
+    --accent-light: #c9a87a;
+    --line: #ddd5c8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+  /* ── COVER PAGE ─────────────────────────────────── */
+  .cover {
+    page-break-after: always;
+    width: 210mm;
+    height: 297mm;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    position: relative;
+  }
+
+  .cover-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 0 auto 40px;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52pt;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-white);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18pt;
+    font-weight: 300;
+    color: var(--accent-light);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .cover-ornament-bottom {
+    width: 40px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 0 auto 48px;
+  }
+
+  .cover-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 300;
+    color: var(--taupe);
+    text-align: center;
+    line-height: 1.8;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 7.5pt;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brown);
+  }
+
+  /* ── CONTENT PAGES ──────────────────────────────── */
+  .page {
+    padding: 36px 48px 36px;
+    page-break-after: always;
+    width: 210mm;
+    position: relative;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  /* Page header strip */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .page-section-label {
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .page-number {
+    font-size: 8pt;
+    font-weight: 300;
+    color: var(--taupe);
+    letter-spacing: 1px;
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24pt;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    margin-bottom: 3px;
+    line-height: 1.1;
+  }
+
+  .section-intro {
+    font-size: 8.5pt;
+    font-weight: 300;
+    color: var(--brown);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* Question block */
+  .question {
+    margin-bottom: 13px;
+  }
+
+  .question-label {
+    font-size: 8pt;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .question-text {
+    font-size: 9.5pt;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 5px;
+    line-height: 1.35;
+  }
+
+  .question-hint {
+    font-size: 7.5pt;
+    font-weight: 300;
+    color: var(--brown);
+    font-style: italic;
+    margin-bottom: 5px;
+    line-height: 1.5;
+  }
+
+  /* Answer line */
+  .answer-line {
+    border-bottom: 1px solid var(--line);
+    height: 22px;
+    margin-bottom: 3px;
+  }
+
+  .answer-lines-2 .answer-line { margin-bottom: 2px; }
+
+  /* Checkbox options */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .option-box {
+    width: 11px;
+    height: 11px;
+    border: 1px solid var(--taupe);
+    flex-shrink: 0;
+    margin-top: 2px;
+    border-radius: 2px;
+  }
+
+  .option-text {
+    font-size: 9pt;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+
+  .option-note {
+    font-size: 8.5pt;
+    color: var(--brown);
+    font-style: italic;
+  }
+
+  /* Color swatch row */
+  .color-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .swatch-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+  }
+
+  .swatch-label {
+    font-size: 7pt;
+    color: var(--brown);
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin: 12px 0;
+  }
+
+  /* Tip box */
+  .tip-box {
+    background: var(--warm-white);
+    border-left: 2px solid var(--accent);
+    padding: 10px 14px;
+    margin: 0 0 18px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .tip-label {
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .tip-text {
+    font-size: 8.5pt;
+    color: var(--brown);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Font specimen */
+  .font-specimen {
+    background: var(--warm-white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 6px 0 10px;
+  }
+
+  .font-serif { font-family: 'Cormorant Garamond', serif; font-size: 17pt; font-weight: 300; font-style: italic; color: var(--dark); }
+  .font-sans  { font-family: 'Inter', sans-serif; font-size: 12pt; font-weight: 300; letter-spacing: 1px; color: var(--dark); }
+  .font-label { font-size: 7pt; letter-spacing: 2px; text-transform: uppercase; color: var(--taupe); margin-top: 3px; }
+
+  /* Example box (last page) */
+  .example-box {
+    background: var(--dark);
+    border-radius: 8px;
+    padding: 14px 22px;
+    color: var(--warm-white);
+  }
+
+  .example-box .example-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent-light);
+    margin-bottom: 10px;
+  }
+
+  .example-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+    align-items: baseline;
+  }
+
+  .example-key {
+    font-size: 7pt;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    min-width: 110px;
+  }
+
+  .example-value {
+    font-size: 8.5pt;
+    color: var(--warm-white);
+    font-weight: 300;
+  }
+
+  /* Page footer */
+  .page-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+
+  .footer-brand {
+    font-size: 7pt;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--line);
+  }
+
+  .footer-line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    margin: 0 16px;
+  }
+
+  /* Two-column layout for options */
+  .options-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+    margin-top: 2px;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     COVER
+════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Дизайн-опросник</div>
+  <div class="cover-ornament"></div>
+  <div class="cover-title">Образ<br>бренда</div>
+  <div class="cover-subtitle">Твой фэшн-бренд · DESIGN.md</div>
+  <div class="cover-ornament-bottom"></div>
+  <div class="cover-description">
+    Заполни этот опросник — и мы создадим полноценную дизайн-систему для твоего сайта.<br><br>
+    Не нужно знать программирование или дизайн. Просто отвечай своими словами — чем честнее, тем лучше результат.
+  </div>
+  <div class="cover-footer">Для создания DESIGN.md · Опросник</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 1 · О бренде
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-section-label">Раздел 01</div>
+    <div class="page-number">1 / 5</div>
+  </div>
+
+  <div class="section-heading">О бренде</div>
+  <div class="section-intro">Общая информация — кто ты, для кого и какое настроение хочешь передать.</div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 1</div>
+    <div class="question-text">Название бренда</div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 2</div>
+    <div class="question-text">Краткое описание — что ты продаёшь и для кого?</div>
+    <div class="question-hint">Например: женская одежда в стиле минимализм для городских девушек 20–35 лет</div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 3</div>
+    <div class="question-text">Какое настроение должен передавать сайт? Выбери 3–5 слов.</div>
+    <div class="options-2col">
+      <div class="option"><div class="option-box"></div><div class="option-text">Уютный, тёплый</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Люксовый, премиум</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Минималистичный, чистый</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Смелый, яркий</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Романтичный, нежный</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Строгий, деловой</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Игривый, молодёжный</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Скандинавский, холодный</div></div>
+    </div>
+    <div style="margin-top:12px;"><div class="question-hint">Своё слово:</div><div class="answer-line"></div></div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 4</div>
+    <div class="question-text">Сайты или бренды, которые тебе нравятся визуально</div>
+    <div class="question-hint">Не обязательно одежда — всё, что цепляет. Можно писать названия.</div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 5</div>
+    <div class="question-text">Сайты, которые тебе НЕ нравятся — и почему</div>
+    <div class="question-hint">Это помогает понять, чего точно избегать.</div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Design Questionnaire</div>
+    <div class="footer-line"></div>
+    <div class="footer-brand">О бренде</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 2 · Цвета
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-section-label">Раздел 02</div>
+    <div class="page-number">2 / 5</div>
+  </div>
+
+  <div class="section-heading">Цвета</div>
+  <div class="section-intro">Цвета — это первое, что чувствует посетитель. Они задают весь тон бренда.</div>
+
+  <div class="tip-box">
+    <div class="tip-label">Подсказка</div>
+    <div class="tip-text">
+      HEX-код — это код цвета вида #c9a0a0. Его можно найти в Pinterest, скопировав цвет с картинки, или описать словами — разберёмся вместе.
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 6</div>
+    <div class="question-text">Главный цвет бренда (акцент)</div>
+    <div class="question-hint">Используется на кнопках, логотипе, важных деталях. Опиши словами или дай HEX.</div>
+    <div class="answer-line"></div>
+    <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+      <div class="swatch-circle" style="border: 2px dashed var(--taupe);"></div>
+      <div class="question-hint">← Закрась или напиши HEX рядом</div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 7</div>
+    <div class="question-text">Фон сайта — какой оттенок?</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Чистый белый <span class="option-note">(#ffffff)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Тёплый кремовый / айвори <span class="option-note">(#faf7f2)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Светло-серый <span class="option-note">(#f2f2f2)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Чёрный / очень тёмный</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Другой: <span style="border-bottom:1px solid var(--line); display:inline-block; width:160px;">&nbsp;</span></div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 8</div>
+    <div class="question-text">Цвет основного текста</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Чёрный <span class="option-note">(#000000)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Тёмно-серый, почти чёрный <span class="option-note">(#1a1a1a или #2a2a2a)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Тёмно-коричневый / тёплый</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Другой: <span style="border-bottom:1px solid var(--line); display:inline-block; width:160px;">&nbsp;</span></div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 9</div>
+    <div class="question-text">Есть ли дополнительные цвета? (для фонов, карточек, рамок)</div>
+    <div class="question-hint">Например: бежевый для карточек товаров, нежно-розовый для выделений...</div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Design Questionnaire</div>
+    <div class="footer-line"></div>
+    <div class="footer-brand">Цвета</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 3 · Шрифты
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-section-label">Раздел 03</div>
+    <div class="page-number">3 / 5</div>
+  </div>
+
+  <div class="section-heading">Шрифты</div>
+  <div class="section-intro">Типографика задаёт голос бренда — элегантный, строгий, дружелюбный или смелый.</div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 10</div>
+    <div class="question-text">Стиль шрифта для заголовков — какой нравится?</div>
+
+    <div class="font-specimen">
+      <div class="font-serif">Образ бренда</div>
+      <div class="font-label">С засечками (Serif) — классика, элегантность, Vogue, Jacquemus</div>
+    </div>
+
+    <div class="font-specimen">
+      <div class="font-sans">Образ бренда</div>
+      <div class="font-label">Без засечек (Sans-serif) — современно, чисто, Zara, Apple</div>
+    </div>
+
+    <div class="options" style="margin-top: 8px;">
+      <div class="option"><div class="option-box"></div><div class="option-text">С засечками (serif) — классика и элегантность</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Без засечек (sans-serif) — современно и чисто</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Рукописный / каллиграфия — романтично, персонально</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Не знаю, решай сам</div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 11</div>
+    <div class="question-text">Вес (толщина) заголовков</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Тонкий / лёгкий <span class="option-note">— изысканно, скандинавский стиль</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Обычный <span class="option-note">— нейтрально, универсально</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Жирный / bold <span class="option-note">— смело, громко, уверенно</span></div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 12</div>
+    <div class="question-text">Название конкретного шрифта (если знаешь)</div>
+    <div class="question-hint">Бесплатные шрифты: fonts.google.com · Примеры: Cormorant, Playfair Display, Inter, Montserrat</div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 13</div>
+    <div class="question-text">Шрифт для основного текста (описания, кнопки, меню)</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Такой же, как для заголовков</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Другой — простой читаемый sans-serif <span class="option-note">(стандартная практика)</span></div></div>
+    </div>
+    <div style="margin-top: 10px;"><div class="question-hint">Конкретное название (если есть):</div><div class="answer-line"></div></div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Design Questionnaire</div>
+    <div class="footer-line"></div>
+    <div class="footer-brand">Шрифты</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 4 · Форма, компоненты, изображения
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-section-label">Раздел 04</div>
+    <div class="page-number">4 / 5</div>
+  </div>
+
+  <div class="section-heading">Детали дизайна</div>
+  <div class="section-intro">Форма кнопок, карточек и стиль фотографий — всё, что делает сайт узнаваемым.</div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 14</div>
+    <div class="question-text">Скруглённость углов (кнопки, карточки товаров)</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Острые прямые углы <span class="option-note">— строго, архитектурно, high fashion</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Слегка скруглённые <span class="option-note">— мягко, но сдержанно</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Сильно скруглённые <span class="option-note">— дружелюбно, молодёжно</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Полностью овальные кнопки (pill) <span class="option-note">— современно, игриво</span></div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 15</div>
+    <div class="question-text">Как выглядит кнопка "В корзину" / "Купить"?</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Чёрная залитая, белый текст <span class="option-note">— fashion-классика (Zara, H&M)</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Акцентный цвет фон, белый текст</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Прозрачная с рамкой <span class="option-note">— minimal стиль</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Белая / светлая</div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 16</div>
+    <div class="question-text">Текст кнопки — заглавные или обычные буквы?</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">ВСЁ ЗАГЛАВНЫМИ <span class="option-note">— строго, fashion-стиль</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Обычные слова <span class="option-note">— дружелюбно, мягко</span></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 17</div>
+    <div class="question-text">Стиль фотографий</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Белый / светлый фон <span class="option-note">— студийные, чистые</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Lifestyle <span class="option-note">— на улице, дома, в жизни</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Редакционные <span class="option-note">— как в Vogue, арт-дирекшн</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Микс всего</div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 18</div>
+    <div class="question-text">Фото цветные или чёрно-белые?</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Только цветные</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Только чёрно-белые</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Микс</div></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Design Questionnaire</div>
+    <div class="footer-line"></div>
+    <div class="footer-brand">Детали дизайна</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 5 · Структура + Пример
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-section-label">Раздел 05</div>
+    <div class="page-number">5 / 5</div>
+  </div>
+
+  <div class="section-heading">Структура сайта</div>
+  <div class="section-intro">Последние детали — из каких разделов будет состоять сайт.</div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 19</div>
+    <div class="question-text">Тени у карточек товаров</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Заметные тени <span class="option-note">— объём, глубина</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Едва заметные тени <span class="option-note">— деликатно</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Без теней, только рамка <span class="option-note">— плоский минимализм</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Без теней и без рамок</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 20</div>
+    <div class="question-text">Какие разделы планируешь? (отметь нужные)</div>
+    <div class="options-2col">
+      <div class="option"><div class="option-box"></div><div class="option-text">Главная</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Магазин / Каталог</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Коллекции</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">О бренде / О нас</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Блог / Редакция</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Контакты</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Lookbook</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Пресса / СМИ</div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 21</div>
+    <div class="question-text">Шапка сайта (header) — как расположить логотип и меню?</div>
+    <div class="options">
+      <div class="option"><div class="option-box"></div><div class="option-text">Логотип по центру, меню по бокам <span class="option-note">— fashion-классика</span></div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Логотип слева, меню справа</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Логотип слева, меню по центру</div></div>
+      <div class="option"><div class="option-box"></div><div class="option-text">Не важно</div></div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-label">Вопрос 22</div>
+    <div class="question-text">Любые другие пожелания, идеи, детали</div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Example box -->
+  <div class="example-box">
+    <div class="example-title">Пример заполнения</div>
+    <div class="example-row">
+      <div class="example-key">Название</div>
+      <div class="example-value">LUMI Studio</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Описание</div>
+      <div class="example-value">Минималистичная женская одежда из натуральных тканей</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Настроение</div>
+      <div class="example-value">Чистый, спокойный, скандинавский, качественный</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Главный цвет</div>
+      <div class="example-value">Тёплый песочный — #d4c5b0</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Фон</div>
+      <div class="example-value">Кремово-белый — #faf8f4</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Шрифт заголовков</div>
+      <div class="example-value">С засечками, тонкий (Cormorant Garamond)</div>
+    </div>
+    <div class="example-row">
+      <div class="example-key">Кнопка</div>
+      <div class="example-value">Чёрная, текст заглавными, острые углы</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">Design Questionnaire</div>
+    <div class="footer-line"></div>
+    <div class="footer-brand">Структура сайта</div>
+  </div>
+</div>
+
+</body>
+</html>
