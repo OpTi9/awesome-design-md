@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAVVASHI — Design System Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --clay:       #A39684;
+    --milkstone:  #D3CABF;
+    --nude:       #EFE4DC;
+    --ivory:      #faf7f2;
+    --white:      #ffffff;
+    --deep-warm:  #2a2826;
+    --warm-stone: #6b6460;
+    --warm-mist:  #a09490;
+    --border:     #e8e2db;
+    --subtle:     #f0ebe4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--ivory);
+    color: var(--deep-warm);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--deep-warm);
+  }
+
+  .preview-label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--warm-mist);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 64px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--warm-mist);
+    margin-bottom: 40px;
+  }
+
+  /* ── COLOR SWATCHES ── */
+  .swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100px;
+  }
+
+  .swatch-block {
+    width: 100px;
+    height: 72px;
+    border: 1px solid rgba(42,40,38,0.08);
+  }
+
+  .swatch-name {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--warm-stone);
+  }
+
+  .swatch-hex {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--warm-mist);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── TYPE SCALE ── */
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--subtle);
+  }
+
+  .type-row:last-child { border-bottom: none; }
+
+  .type-meta {
+    min-width: 200px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-mist);
+    line-height: 1.5;
+  }
+
+  .t-display { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; line-height: 1.05; letter-spacing: 0.02em; font-style: italic; }
+  .t-h1      { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; line-height: 1.10; letter-spacing: 0.02em; }
+  .t-h2      { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; line-height: 1.15; letter-spacing: 0.02em; }
+  .t-h3      { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; line-height: 1.20; letter-spacing: 0.03em; }
+  .t-product { font-family: 'DM Sans', sans-serif;        font-size: 14px; font-weight: 400; line-height: 1.40; letter-spacing: 0.08em; text-transform: uppercase; }
+  .t-body    { font-family: 'DM Sans', sans-serif;        font-size: 15px; font-weight: 300; line-height: 1.65; letter-spacing: 0.01em; max-width: 520px; }
+  .t-button  { font-family: 'DM Sans', sans-serif;        font-size: 11px; font-weight: 400; line-height: 1.00; letter-spacing: 0.18em; text-transform: uppercase; }
+  .t-caption { font-family: 'DM Sans', sans-serif;        font-size: 11px; font-weight: 300; line-height: 1.50; letter-spacing: 0.10em; color: var(--warm-stone); }
+
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--subtle);
+  }
+
+  .btn-row:last-child { border-bottom: none; }
+
+  .btn-meta {
+    min-width: 180px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-mist);
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: transparent;
+    border: 1px solid var(--deep-warm);
+    color: var(--deep-warm);
+  }
+  .btn-primary:hover { background: var(--deep-warm); color: var(--white); }
+
+  .btn-clay {
+    background: transparent;
+    border: 1px solid var(--clay);
+    color: var(--clay);
+  }
+  .btn-clay:hover { background: var(--clay); color: var(--white); }
+
+  .btn-text {
+    background: transparent;
+    border: none;
+    color: var(--deep-warm);
+    padding: 12px 0;
+    border-bottom: 1px solid transparent;
+  }
+  .btn-text:hover { color: var(--clay); border-bottom-color: var(--clay); }
+
+  .btn-filled {
+    background: var(--deep-warm);
+    border: 1px solid var(--deep-warm);
+    color: var(--white);
+  }
+  .btn-filled:hover { background: var(--clay); border-color: var(--clay); }
+
+  /* ── CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .product-card {
+    background: var(--white);
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--milkstone);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image-inner {
+    width: 60%;
+    height: 80%;
+    background: var(--nude);
+    position: relative;
+  }
+
+  /* Simulate fabric texture */
+  .product-image-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%, rgba(0,0,0,0.04) 100%);
+  }
+
+  .product-card-info {
+    padding: 14px 16px 18px;
+    background: var(--white);
+  }
+
+  .product-card-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--deep-warm);
+    margin-bottom: 5px;
+  }
+
+  .product-card-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-stone);
+  }
+
+  /* ── HERO STRIP ── */
+  .hero-strip {
+    background: var(--deep-warm);
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(163,150,132,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 20px;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+    color: var(--nude);
+    margin-bottom: 28px;
+    max-width: 560px;
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--milkstone);
+    margin-bottom: 40px;
+  }
+
+  /* ── FILTER TAGS ── */
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+  .tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    color: var(--warm-stone);
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .tag:hover { border-color: var(--warm-stone); color: var(--deep-warm); }
+
+  .tag.active {
+    background: var(--clay);
+    border-color: var(--clay);
+    color: var(--white);
+  }
+
+  /* ── SIZE SELECTOR ── */
+  .size-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+  .size-tile {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--warm-stone);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .size-tile:hover { border-color: var(--deep-warm); color: var(--deep-warm); }
+  .size-tile.selected { border-color: var(--deep-warm); color: var(--deep-warm); font-weight: 400; }
+  .size-tile.oos { color: var(--border); position: relative; }
+  .size-tile.oos::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 8px; right: 8px;
+    height: 1px;
+    background: var(--border);
+    transform: rotate(-45deg) translateY(-50%);
+  }
+
+  /* ── INPUT ── */
+  .input-demo {
+    border: 1px solid var(--border);
+    background: var(--white);
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--deep-warm);
+    outline: none;
+    width: 280px;
+    transition: border-color 0.2s;
+  }
+
+  .input-demo:focus { border-color: var(--clay); }
+
+  /* ── SPACING VIZ ── */
+  .spacing-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+
+  .space-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .space-vis {
+    background: var(--milkstone);
+    width: 16px;
+  }
+
+  .space-label {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--warm-mist);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="brand-name">MAVVASHI</div>
+  <div class="preview-label">Design System Preview</div>
+</header>
+
+<!-- COLOR PALETTE -->
+<section class="section">
+  <div class="section-title">01 &nbsp;·&nbsp; Color Palette</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#A39684;"></div>
+      <div class="swatch-name">Clay</div>
+      <div class="swatch-hex">#A39684</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#D3CABF;"></div>
+      <div class="swatch-name">Milkstone</div>
+      <div class="swatch-hex">#D3CABF</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#EFE4DC;"></div>
+      <div class="swatch-name">Nude Blush</div>
+      <div class="swatch-hex">#EFE4DC · Pantone 9100 U</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#faf7f2; border-color: #e8e2db;"></div>
+      <div class="swatch-name">Ivory Canvas</div>
+      <div class="swatch-hex">#faf7f2</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#ffffff; border-color: #e8e2db;"></div>
+      <div class="swatch-name">Pure White</div>
+      <div class="swatch-hex">#ffffff</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#2a2826;"></div>
+      <div class="swatch-name">Deep Warm</div>
+      <div class="swatch-hex">#2a2826</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#6b6460;"></div>
+      <div class="swatch-name">Warm Stone</div>
+      <div class="swatch-hex">#6b6460</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#a09490;"></div>
+      <div class="swatch-name">Warm Mist</div>
+      <div class="swatch-hex">#a09490</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#e8e2db;"></div>
+      <div class="swatch-name">Warm Border</div>
+      <div class="swatch-hex">#e8e2db</div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section">
+  <div class="section-title">02 &nbsp;·&nbsp; Typography</div>
+
+  <div class="type-row">
+    <div class="type-meta">Display / Hero<br>Cormorant 300 Italic<br>64px · lh 1.05</div>
+    <div class="t-display">New Collection</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">H1 / Collection Title<br>Cormorant 300<br>48px · lh 1.10</div>
+    <div class="t-h1">Autumn Essentials</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">H2 / Section Heading<br>Cormorant 300<br>36px · lh 1.15</div>
+    <div class="t-h2">Modest by Design</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">H3 / Sub-heading<br>Cormorant 300<br>24px · lh 1.20</div>
+    <div class="t-h3">New Arrivals</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">Product Name<br>DM Sans 400 · ALL CAPS<br>14px · ls 0.08em</div>
+    <div class="t-product">Linen Abaya — Ivory</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">Body<br>DM Sans 300<br>15px · lh 1.65</div>
+    <div class="t-body">Each piece is designed to move with you — flowing silhouettes that honour modesty without compromising on elegance. Crafted from premium natural fabrics, MAVVASHI pieces are made to be worn from morning prayer to evening dinner.</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">Button / Nav<br>DM Sans 400 · ALL CAPS<br>11px · ls 0.18em</div>
+    <div class="t-button">Shop Collection &nbsp;·&nbsp; New Arrivals &nbsp;·&nbsp; About</div>
+  </div>
+
+  <div class="type-row">
+    <div class="type-meta">Caption / Label<br>DM Sans 300<br>11px · ls 0.10em</div>
+    <div class="t-caption">Available in 4 colours &nbsp;·&nbsp; Free delivery over 3000₽ &nbsp;·&nbsp; New season</div>
+  </div>
+</section>
+
+<!-- BUTTONS -->
+<section class="section" style="background: var(--white);">
+  <div class="section-title">03 &nbsp;·&nbsp; Buttons</div>
+
+  <div class="btn-row">
+    <div class="btn-meta">Primary Outline<br>Default state</div>
+    <a class="btn btn-primary" href="#">Add to Cart</a>
+    <a class="btn btn-primary" href="#">Shop Now</a>
+  </div>
+
+  <div class="btn-row">
+    <div class="btn-meta">Clay Outline<br>Secondary action</div>
+    <a class="btn btn-clay" href="#">Save to Wishlist</a>
+    <a class="btn btn-clay" href="#">View Lookbook</a>
+  </div>
+
+  <div class="btn-row">
+    <div class="btn-meta">Filled<br>Hover state / emphasis</div>
+    <a class="btn btn-filled" href="#">Checkout</a>
+    <a class="btn btn-filled" href="#">Complete Order</a>
+  </div>
+
+  <div class="btn-row">
+    <div class="btn-meta">Text Only<br>Minimal / inline</div>
+    <a class="btn btn-text" href="#">View All →</a>
+    <a class="btn btn-text" href="#">See Details →</a>
+  </div>
+</section>
+
+<!-- PRODUCT CARDS -->
+<section class="section">
+  <div class="section-title">04 &nbsp;·&nbsp; Product Cards</div>
+  <div class="cards-grid">
+    <div class="product-card">
+      <div class="product-image" style="background:#D3CABF;">
+        <div class="product-image-inner" style="background:#EFE4DC;"></div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Linen Abaya — Ivory</div>
+        <div class="product-card-price">12 900 ₽</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image" style="background:#EFE4DC;">
+        <div class="product-image-inner" style="background:#D3CABF;"></div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Wide Leg Trouser — Clay</div>
+        <div class="product-card-price">7 400 ₽</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image" style="background:#f0ebe4;">
+        <div class="product-image-inner" style="background:#A39684;"></div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Silk Maxi Skirt — Stone</div>
+        <div class="product-card-price">9 200 ₽</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image" style="background:#e8e2db;">
+        <div class="product-image-inner" style="background:#faf7f2;"></div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Oversized Coat — Milkstone</div>
+        <div class="product-card-price">18 500 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO STRIP -->
+<section class="section" style="padding: 0; border: none;">
+  <div class="hero-strip">
+    <div class="hero-eyebrow">New Collection — Autumn / Winter</div>
+    <div class="hero-headline">Dressed with<br>intention.</div>
+    <div class="hero-sub">Modest · Elegant · Yours</div>
+    <a class="btn btn-clay" href="#">Explore Collection</a>
+  </div>
+</section>
+
+<!-- UI COMPONENTS -->
+<section class="section" style="background: var(--white);">
+  <div class="section-title">05 &nbsp;·&nbsp; UI Components</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px;">
+
+    <div>
+      <div style="font-size:10px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-mist); margin-bottom:14px;">Filter Tags</div>
+      <div class="tag-row">
+        <button class="tag active">All</button>
+        <button class="tag">Abayas</button>
+        <button class="tag">Trousers</button>
+        <button class="tag">Tops</button>
+        <button class="tag">Coats</button>
+        <button class="tag">New</button>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-mist); margin-bottom:14px;">Size Selector</div>
+      <div class="size-grid">
+        <div class="size-tile">XS</div>
+        <div class="size-tile selected">S</div>
+        <div class="size-tile">M</div>
+        <div class="size-tile">L</div>
+        <div class="size-tile oos">XL</div>
+        <div class="size-tile">XXL</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-mist); margin-bottom:14px;">Input Field</div>
+      <input class="input-demo" type="text" placeholder="Email address" />
+    </div>
+
+    <div>
+      <div style="font-size:10px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-mist); margin-bottom:14px;">Spacing Scale</div>
+      <div class="spacing-row">
+        <div class="space-block"><div class="space-vis" style="height:4px;"></div><div class="space-label">4</div></div>
+        <div class="space-block"><div class="space-vis" style="height:8px;"></div><div class="space-label">8</div></div>
+        <div class="space-block"><div class="space-vis" style="height:12px;"></div><div class="space-label">12</div></div>
+        <div class="space-block"><div class="space-vis" style="height:16px;"></div><div class="space-label">16</div></div>
+        <div class="space-block"><div class="space-vis" style="height:24px;"></div><div class="space-label">24</div></div>
+        <div class="space-block"><div class="space-vis" style="height:32px;"></div><div class="space-label">32</div></div>
+        <div class="space-block"><div class="space-vis" style="height:40px;"></div><div class="space-label">40</div></div>
+        <div class="space-block"><div class="space-vis" style="height:56px;"></div><div class="space-label">56</div></div>
+        <div class="space-block"><div class="space-vis" style="height:72px;"></div><div class="space-label">72</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
